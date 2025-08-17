@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx browserslist:*)"
+      "Bash(npx browserslist:*)",
+      "Bash(yarn add:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
