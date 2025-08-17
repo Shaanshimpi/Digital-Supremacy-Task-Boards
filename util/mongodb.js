@@ -1,7 +1,5 @@
 import { MongoClient } from 'mongodb';
-
 const { MONGODB_URI, MONGODB_DB } = process.env;
-
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
@@ -32,8 +30,7 @@ export async function connectToDatabase() {
       useUnifiedTopology: true
     };
 
-    const mongoURL =
-      process.env.NODE_ENV === 'development' ? process.env.LOCAL_MONGODB : process.env.MONGODB_URI;
+    const mongoURL = process.env.MONGODB_URI;
 
     cached.promise = MongoClient.connect(mongoURL, opts).then((client) => {
       return {

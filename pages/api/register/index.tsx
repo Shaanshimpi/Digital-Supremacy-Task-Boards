@@ -33,23 +33,24 @@ const createUser = async (body, res) => {
     }
 
     // Create User
-    let user = {};
+    try {
+      const hashedPassword = await hash(password, SALTROUNDS);
+      const user = await db.collection('users').insertOne({
+        _id: id,
+        email,
+        password: hashedPassword,
+        fullName
+      });
 
-    hash(password, SALTROUNDS, async (err, hash) => {
-      // Store hash in your password DB.
-      user = await db.collection('users').insertOne({ _id: id, email, password: hash, fullName });
-    });
+      if (user.insertedId) {
+        res.status(200).send({ message: 'success' });
+        return;
+      }
 
-    if (user) {
-      const data = {
-        message: 'success'
-      };
-
-      res.status(200).send(data);
-      return;
+      res.status(404).send({ message: 'failed' });
+    } catch (error) {
+      res.status(500).send({ message: 'Server error' });
     }
-
-    res.status(404).send({ message: 'failed' });
 
     return;
   } else {

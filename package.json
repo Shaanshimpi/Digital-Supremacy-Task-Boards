@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A clone of trello app which does the basic features of real world trello",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && next dev",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && next build",
     "start": "next start",
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
@@ -28,6 +28,7 @@
     "@reduxjs/toolkit": "^1.5.1",
     "@sendgrid/mail": "^7.4.4",
     "bcrypt": "^5.0.1",
+    "caniuse-lite": "^1.0.30001735",
     "cookie": "^0.4.1",
     "framer-motion": "^4",
     "js-cookie": "^2.2.1",
