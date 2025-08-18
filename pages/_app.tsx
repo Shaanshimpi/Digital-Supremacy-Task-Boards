@@ -23,12 +23,12 @@ const theme = extendTheme({
   }
 });
 
-const TrelloApp = ({ Component, pageProps }) => {
+const DigitalSupremacyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Trello clone</title>
-        <link rel="shortcut icon" href="/trello-icon.svg"></link>
+        <title>Digital Supremacy</title>
+        <link rel="shortcut icon" href="/digsup-icon.svg.png"></link>
       </Head>
       <NextNprogress color="#0079bf" startPosition={0.3} stopDelayMs={200} height={4} />
       <ChakraProvider theme={theme}>
@@ -38,8 +38,8 @@ const TrelloApp = ({ Component, pageProps }) => {
   );
 };
 
-TrelloApp.propTypes = {
+DigitalSupremacyApp.propTypes = {
   pageProps: PropTypes.object
 };
 
-export default TrelloApp;
+export default DigitalSupremacyApp;

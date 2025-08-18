@@ -164,7 +164,7 @@ const SignUp = (): JSX.Element => {
           ml="auto"
           mr="auto"
           my="40px"
-          src="/trello-logo.svg"
+          src="/digsup-icon.svg.png"
           display="inline-block"
           alt="brand logo"
         />
