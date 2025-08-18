@@ -39,6 +39,7 @@ const Login = () => {
       email: values.email,
       password: values.password
     };
+    console.log('data entered:', data);
 
     const url = `${host}/api/login`;
 
@@ -57,6 +58,7 @@ const Login = () => {
 
     const result = await response.json();
     setIsFetching(false);
+    console.log('result:', result);
 
     const { email: inviteEmail, token, boardId } = router.query;
     const isInvitedUser = inviteEmail && token && boardId;

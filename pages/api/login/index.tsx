@@ -23,15 +23,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { email, password } = req.body;
 
     // Check any field is empty
-    if (!email || !password) res.status(400).send({ error: 'email or password is missing' });
+    if (!email || !password) {
+      res.status(400).send({ error: 'email or password is missing' });
+      return;
+    }
 
-    const { db, client } = await connectToDatabase();
+    try {
+      const { db, client } = await connectToDatabase();
 
-    if (client.isConnected()) {
-      const userDetail = await isUserExists(db, email);
+      if (client.isConnected()) {
+        const userDetail = await isUserExists(db, email);
 
-      if (userDetail) {
-        compare(password, userDetail.password, function (err, isMatched) {
+        if (userDetail) {
+          const isMatched = await compare(password, userDetail.password);
+
           if (isMatched === true) {
             const claim = { id: userDetail._id, email: userDetail.email };
             const token = sign({ user: claim }, KEY, { expiresIn: '1h' });
@@ -51,11 +56,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           } else {
             res.status(404).send({ error: 'Invalid username or password' });
           }
-        });
+        } else {
+          // User does not exist
+          res.status(404).send({ error: 'Invalid username or password' });
+        }
       } else {
-        // User does not exits
-        res.status(404).send({ error: 'Invalid username or password' });
+        res.status(500).send({ error: 'Database connection failed' });
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      res.status(500).send({ error: 'Server error' });
     }
+  } else {
+    res.status(405).send({ error: 'Method not allowed' });
   }
 }
