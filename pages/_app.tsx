@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme, ColorModeScript } from '@chakra-ui/react';
 import '@/src/styles/default.css';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
@@ -8,6 +8,10 @@ import NextNprogress from 'nextjs-progressbar';
 import 'nprogress/nprogress.css';
 
 const theme = extendTheme({
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: true // Respects user's system preference
+  },
   colors: {
     brand: '#0079bf',
     success: '#70b500',
@@ -23,13 +27,14 @@ const theme = extendTheme({
   }
 });
 
-const DigitalSupremacyApp = ({ Component, pageProps }) => {
+const DigitalSupremacyApp = ({ Component, pageProps }): JSX.Element => {
   return (
     <>
       <Head>
         <title>Digital Supremacy</title>
         <link rel="shortcut icon" href="/digsup-icon.svg.png"></link>
       </Head>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <NextNprogress color="#0079bf" startPosition={0.3} stopDelayMs={200} height={4} />
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />

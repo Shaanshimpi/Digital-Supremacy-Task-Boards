@@ -167,6 +167,7 @@ const SignUp = (): JSX.Element => {
           src="/digsup-icon.svg.png"
           display="inline-block"
           alt="brand logo"
+          mixBlendMode="difference"
         />
       </Box>
       <Flex

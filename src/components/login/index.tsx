@@ -107,7 +107,13 @@ const Login = () => {
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center" my="40px">
-        <Image height="20px" mt="2" src="/digsup-icon.svg.png" alt="brand logo"></Image>
+        <Image
+          height="20px"
+          mt="2"
+          src="/digsup-icon.svg.png"
+          alt="brand logo"
+          mixBlendMode="difference"
+        />
         <Text fontWeight="bold" fontSize="28px" m="4px">
           Digital Supremacy
         </Text>

@@ -8,16 +8,20 @@ import {
   MenuItem,
   MenuList,
   Avatar,
-  Text
+  Text,
+  useColorModeValue
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useAppSelector } from '@/src/hooks';
 import { AiOutlineHome } from 'react-icons/ai';
 import { SiTrello } from 'react-icons/si';
+import DarkModeToggle from '@/src/components/dark-mode-toggle';
 
 const UserNavBar: FC = () => {
   const user = useAppSelector((state) => state.user);
+  const navBg = useColorModeValue('rgba(0,0,0,0.2)', 'rgba(255,255,255,0.1)');
+  const textColor = useColorModeValue('white', 'gray.100');
 
   const logout = async () => {
     const URL = '/api/logout';
@@ -76,7 +80,7 @@ const UserNavBar: FC = () => {
   };
 
   return (
-    <Box boxShadow="sm" bg="rgba(0,0,0,0.2)" display="flex">
+    <Box boxShadow="sm" bg={navBg} display="flex">
       <Link href="/home">
         <Button size="xs" ml="5px" my="5px">
           <AiOutlineHome />
@@ -88,13 +92,14 @@ const UserNavBar: FC = () => {
         </Button>
       </Link>
       <Spacer />
-      <Box size="md" m="10px" color="white">
+      <Box size="md" m="10px" color={textColor} mixBlendMode="difference">
         <SiTrello />
       </Box>
-      <Text fontWeight="bold" fontSize="20px" mt="2px" color="white">
+      <Text fontWeight="bold" fontSize="20px" mt="2px" color={textColor}>
         Digital Supremacy
       </Text>
       <Spacer />
+      <DarkModeToggle color={textColor} _hover={{ bg: 'rgba(255, 255, 255, 0.1)' }} />
       {renderButtons()}
     </Box>
   );

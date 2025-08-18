@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { Button, Image, Flex, Box, Spacer } from '@chakra-ui/react';
+import { Button, Image, Flex, Box, Spacer, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useAppSelector } from '@/src/hooks';
 import { GrLogout } from 'react-icons/gr';
+import DarkModeToggle from '@/src/components/dark-mode-toggle';
 
 type IProps = {
   bg?: string;
@@ -11,6 +12,7 @@ type IProps = {
 
 const NavBar: FC<IProps> = ({ bg }) => {
   const user = useAppSelector((state) => state.user);
+  const navBg = useColorModeValue(bg || 'white', 'gray.800');
 
   const logout = async () => {
     const URL = '/api/logout';
@@ -64,10 +66,17 @@ const NavBar: FC<IProps> = ({ bg }) => {
   };
 
   return (
-    <Box bg={bg} boxShadow="md">
+    <Box bg={navBg} boxShadow="md">
       <Flex>
-        <Image height="8" src="/digsup-icon.svg.png" alt="brand logo" m="5"></Image>
+        <Image
+          height="8"
+          src="/digsup-icon.svg.png"
+          alt="brand logo"
+          m="5"
+          mixBlendMode="difference"
+        />
         <Spacer />
+        <DarkModeToggle />
         {renderButtons()}
       </Flex>
     </Box>
