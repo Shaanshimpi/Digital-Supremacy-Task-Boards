@@ -10,20 +10,57 @@ import 'nprogress/nprogress.css';
 const theme = extendTheme({
   config: {
     initialColorMode: 'light',
-    useSystemColorMode: true // Respects user's system preference
+    useSystemColorMode: true
   },
   colors: {
-    brand: '#0079bf',
-    success: '#70b500',
-    danger: '#eb5a46',
-    info: '#ff9f1a',
-    warning: '#f2d600',
-    darkblue: '#eae6ff',
-    lightblue: '#f2faf9',
-    performance: '#0079bf',
-    bug: '#eb5a46',
-    feature: '#61bd4f',
-    information: '#ff9f1a'
+    brand: {
+      light: '#0079bf',
+      dark: '#005a8d'
+    },
+    success: {
+      light: '#70b500',
+      dark: '#5a9a00'
+    },
+    danger: {
+      light: '#eb5a46',
+      dark: '#c94a3a'
+    },
+    info: {
+      light: '#ff9f1a',
+      dark: '#e68a00'
+    },
+    warning: {
+      light: '#f2d600',
+      dark: '#d9bd00'
+    },
+    darkblue: {
+      light: '#eae6ff',
+      dark: '#a9a1cc'
+    },
+    lightblue: {
+      light: '#f2faf9',
+      dark: '#cce8e3'
+    },
+    performance: {
+      light: '#0079bf',
+      dark: '#005a8d'
+    },
+    bug: {
+      light: '#eb5a46',
+      dark: '#c94a3a'
+    },
+    feature: {
+      light: '#61bd4f',
+      dark: '#4a9b3c'
+    },
+    information: {
+      light: '#ff9f1a',
+      dark: '#e68a00'
+    },
+    bg: {
+      light: '#ffffff',
+      dark: '#1a202c'
+    }
   }
 });
 
